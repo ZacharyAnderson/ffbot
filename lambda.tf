@@ -1,11 +1,12 @@
-variable "bot_token" {}
+variable "groupme_token" {}
+variable "bot_id" {}
 
 resource "aws_lambda_function" "lambdafunc" {
   function_name = "handleFFbotEvent"
 
   # The bucket name as created earlier with "aws s3api create-bucket"
   s3_bucket = "lambda-function-package-bucket"
-  s3_key    = "v1.0.0/PythonPackage.zip"
+  s3_key    = "v1.0.0/ffbotPythonPackage.zip"
 
   # "main" is the filename within the zip file (main.js) and "handler"
   # is the name of the property under which the handler function was
@@ -18,6 +19,7 @@ resource "aws_lambda_function" "lambdafunc" {
   environment {
       variables {
           BOT_TOKEN="${var.groupme_token}",
+          BOT_ID="${var.bot_id}"
       }
   }
 }
