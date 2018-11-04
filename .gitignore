@@ -6,6 +6,10 @@ config.ini
 *.tfstate.backup
 hooks/
 info/
+config
+description
+HEAD
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
