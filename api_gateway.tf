@@ -1,10 +1,10 @@
-resource "aws_api_gateway_rest_api" "moonratbrains" {
-  name        = "MoonratBrains"
-  description = "Terraform Serverless Slack Bot"
+resource "aws_api_gateway_rest_api" "ffbotbrains" {
+  name        = "ffbotbrains"
+  description = "Terraform Serverless groupme bot"
 }
 
 resource "aws_api_gateway_integration" "lambda" {
-  rest_api_id = "${aws_api_gateway_rest_api.moonratbrains.id}"
+  rest_api_id = "${aws_api_gateway_rest_api.ffbotbrains.id}"
   resource_id = "${aws_api_gateway_method.eventhandler.resource_id}"
   http_method = "${aws_api_gateway_method.eventhandler.http_method}"
 
@@ -14,7 +14,7 @@ resource "aws_api_gateway_integration" "lambda" {
 }
 
 resource "aws_api_gateway_method_response" "200" {
-  rest_api_id = "${aws_api_gateway_rest_api.moonratbrains.id}"
+  rest_api_id = "${aws_api_gateway_rest_api.ffbotbrains.id}"
   resource_id = "${aws_api_gateway_resource.eventhandler.id}"
   http_method = "${aws_api_gateway_method.eventhandler.http_method}"
   status_code = "200"
@@ -22,7 +22,7 @@ resource "aws_api_gateway_method_response" "200" {
 
 resource "aws_api_gateway_integration_response" "integrationResponse" {
   depends_on = ["aws_api_gateway_integration.lambda"]
-  rest_api_id = "${aws_api_gateway_rest_api.moonratbrains.id}"
+  rest_api_id = "${aws_api_gateway_rest_api.ffbotbrains.id}"
   resource_id = "${aws_api_gateway_resource.eventhandler.id}"
   http_method = "${aws_api_gateway_method.eventhandler.http_method}"
   status_code = "${aws_api_gateway_method_response.200.status_code}"
@@ -30,7 +30,7 @@ resource "aws_api_gateway_integration_response" "integrationResponse" {
 }
 resource "aws_api_gateway_deployment" "apigwdeployment" {
   depends_on = ["aws_api_gateway_integration.lambda"]
-  rest_api_id = "${aws_api_gateway_rest_api.moonratbrains.id}"
+  rest_api_id = "${aws_api_gateway_rest_api.ffbotbrains.id}"
   stage_name  = "test"
 }
 

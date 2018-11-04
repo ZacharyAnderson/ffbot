@@ -1,5 +1,5 @@
 """
-Slack chat-bot Lambda handler.
+Groupme Bot
 """
 
 import os
@@ -13,7 +13,6 @@ import requests
 
 # Define the URL of the targeted Slack API resource.
 # We'll send our replies there.
-SLACK_URL = "https://slack.com/api/chat.postMessage"
 
 
 def lambda_handler(data, context):
@@ -31,10 +30,8 @@ def lambda_handler(data, context):
         config = configparser.ConfigParser()
         config.read('config.ini')
         BOT_TOKEN = config['SLACK_BOT']['SLACK_BOT_TOKEN']
-        COINMARKETCAP_TOKEN = config['SLACK_BOT']['COINMARKETCAP_API_TOKEN']
     else:
         BOT_TOKEN = os.environ['BOT_TOKEN']
-        COINMARKETCAP_TOKEN = os.environ['COINMARKETCAP_API_TOKEN']
 
     if "challenge" in data:
         return data["challenge"]

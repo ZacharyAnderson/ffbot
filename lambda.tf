@@ -1,8 +1,7 @@
 variable "bot_token" {}
-variable "coinmarketcap_token" {}
 
 resource "aws_lambda_function" "lambdafunc" {
-  function_name = "handleMoonratEvent"
+  function_name = "handleFFbotEvent"
 
   # The bucket name as created earlier with "aws s3api create-bucket"
   s3_bucket = "lambda-function-package-bucket"
@@ -11,15 +10,14 @@ resource "aws_lambda_function" "lambdafunc" {
   # "main" is the filename within the zip file (main.js) and "handler"
   # is the name of the property under which the handler function was
   # exported in that file.
-  handler = "moonratv2.lambda_handler"
+  handler = "ffbot.lambda_handler"
   runtime = "python3.6"
 
   role = "${aws_iam_role.lambda_exec.arn}"
 
   environment {
       variables {
-          BOT_TOKEN="${var.bot_token}",
-          COINMARKETCAP_API_TOKEN="${var.coinmarketcap_token}"
+          BOT_TOKEN="${var.groupme_token}",
       }
   }
 }
@@ -27,7 +25,7 @@ resource "aws_lambda_function" "lambdafunc" {
 # IAM role which dictates what other AWS services the Lambda function
 # may access.
 resource "aws_iam_role" "lambda_exec" {
-  name = "handleMoonratDirectEvent_role"
+  name = "handleFFboyDirectEvent_role"
 
   assume_role_policy = <<EOF
 {
@@ -47,13 +45,13 @@ EOF
 }
 
 resource "aws_api_gateway_resource" "eventhandler" {
-  rest_api_id = "${aws_api_gateway_rest_api.moonratbrains.id}"
-  parent_id   = "${aws_api_gateway_rest_api.moonratbrains.root_resource_id}"
+  rest_api_id = "${aws_api_gateway_rest_api.ffbotbrains.id}"
+  parent_id   = "${aws_api_gateway_rest_api.ffbotbrains.root_resource_id}"
   path_part   = "event-handler"
 }
 
 resource "aws_api_gateway_method" "eventhandler" {
-  rest_api_id   = "${aws_api_gateway_rest_api.moonratbrains.id}"
+  rest_api_id   = "${aws_api_gateway_rest_api.ffbotbrains.id}"
   resource_id   = "${aws_api_gateway_resource.eventhandler.id}"
   http_method   = "POST"
   authorization = "NONE"

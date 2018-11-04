@@ -5,13 +5,13 @@ export TAG
 
 build_package:
 	mkdir dist
-	cp -rf moonratv2.py dist
-	cp -rf ~/moonratV2/venv/lib/python3.6/site-packages/* dist
-	cp -rf ~/moonratV2/venv/lib64/python3.6/site-packages/* dist
+	cp -rf ffbot.py dist
+	cp -rf ~/ffbot/venv/lib/python3.6/site-packages/* dist
+	cp -rf ~/ffbot/venv/lib64/python3.6/site-packages/* dist
 	cd dist/ && zip -r9 PythonPackage.zip .
 
 build: build_package
-	aws s3 cp ~/moonratV2/dist/PythonPackage.zip s3://lambda-function-package-bucket/v1.0.0/PythonPackage.zip
+	aws s3 cp ~/ffbot/dist/PythonPackage.zip s3://lambda-function-package-bucket/v1.0.0/PythonPackage.zip
 	rm -f -r dist
 clean:
 	rm -f *.zip

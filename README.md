@@ -1,18 +1,16 @@
-# Moonrat V2
-Moonrat V2 is a chat bot that communicates on the Slack messaging app.
-Moonrat will listen for cryptocurrency commands and output the correct information.
+# ffbot
+ffbot will be a bot that sits on a groupme chat and outputs relevant fantasy football information.
 
 ## Application Architecure
-Moonrat will be a serverless function, built on AWS LAMBDA and also using AWS API Gateway.
+ffbot will be a serverless function, built on AWS LAMBDA and also using AWS API Gateway.
 
 ### Setting up ~/.bashrc 
-It is required that you set your Slack API bot token and coinmarketcap api token in your .bashrc file
+It is required that you set your groupme API bot token and coinmarketcap api token in your .bashrc file
 
 ```
 nano ~/.bashrc
 ```
 
 ```
-export TF_VAR_bot_token = [BOT TOKEN HERE]
-export TF_VAR_coinmarketcap_token = [COINMARKETCAP TOKEN HERE]
+export TF_VAR_groupme_token = [BOT TOKEN HERE]
 ```
