@@ -50,7 +50,7 @@ def lambda_handler(data, context):
         text = data["text"]
         formatted_output = parse_group_text(text)
         
-        if formatted_output != "None":
+        if formatted_output != None:
            data = {'bot_id': BOT_ID, 'text': formatted_output}
            headers = {'Content-Type': 'application/json'}
            url = 'https://api.groupme.com/v3/bots/post'
@@ -70,9 +70,6 @@ def parse_group_text(text):
         'https://i.groupme.com/474x311.jpeg.714a43e2d31e4bb18c2b84e06460df9e.large',
         'https://i.groupme.com/796x1632.jpeg.492a490e13eb4375b7dcbc7f5fae9fed.large']
 
-    string = text.split()
-    for word in string:
-        if (word.find('DAWGS') != -1):
-            return(random.choice(dogs_meme_list))
-    else:
-        return("None")
+    if (text.find('DAWGS') != -1):
+        return(random.choice(dogs_meme_list))
+    return None
