@@ -72,7 +72,7 @@ def parse_group_text(text):
 
     string = text.split()
     for word in string:
-        if word == "DAWGS":
+        if (word.find('DAWGS') != -1):
             return(random.choice(dogs_meme_list))
-    else:
-        return("None")
+        else:
+            return("None")
