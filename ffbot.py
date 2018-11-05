@@ -67,7 +67,8 @@ def parse_group_text(text):
         'https://cdn.discordapp.com/attachments/507983124391788554/507987555485089792/drake-dog-diamond-pet-views.png',
         'https://i.groupme.com/231x218.jpeg.9eac248103134c28a1697c717f393c96.large',
         'https://i.groupme.com/474x355.jpeg.84ee81e8e12b4b8082376efec162ac09.large',
-        'https://i.groupme.com/474x311.jpeg.714a43e2d31e4bb18c2b84e06460df9e.large']
+        'https://i.groupme.com/474x311.jpeg.714a43e2d31e4bb18c2b84e06460df9e.large',
+        'https://i.groupme.com/796x1632.jpeg.492a490e13eb4375b7dcbc7f5fae9fed.large']
 
     string = text.split()
     for word in string:
